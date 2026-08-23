@@ -149,26 +149,28 @@
         </div>
     </section>
 
-    <!-- YOUTUBE AUDIO PLAYER SECTION -->
+    <!-- RADIO GAME MUSIC SECTION -->
     <section class="relative py-12">
         <div class="mx-auto max-w-xl px-5 lg:px-8">
             <div class="mb-4 flex items-center justify-between">
                 <div>
-                    <span class="text-xs font-semibold uppercase tracking-[0.2em] text-[#00FF66]">Trilha Sonora Gamer</span>
-                    <h3 class="text-lg font-bold text-white">Dê o play e explore o site com som 🎧</h3>
+                    <span class="text-xs font-semibold uppercase tracking-[0.2em] text-[#00FF66]">Rádio Gamer 24/7</span>
+                    <h3 class="text-lg font-bold text-white">Trilha sonora aleatória de clássicos 🎧</h3>
                 </div>
             </div>
-            <div class="overflow-hidden rounded-2xl border border-white/10 bg-card shadow-xl">
-                <div class="relative w-full" style="padding-top: 56.25%;">
-                    <iframe class="absolute inset-0 h-full w-full" 
-                        src="https://www.youtube.com/embed/FSiSwKeDsWY?si=r3ETwksfEa2tVNQl&amp;start=10&amp;autoplay=0&amp;loop=1&amp;playlist=FSiSwKeDsWY" 
-                        title="Trilha Sonora Gamer" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                        referrerpolicy="strict-origin-when-cross-origin" 
-                        allowfullscreen>
-                    </iframe>
+            <!-- Player de Áudio Estilizado -->
+            <div class="overflow-hidden rounded-2xl border border-white/10 bg-card p-6 shadow-xl flex flex-col items-center gap-4">
+                <div class="flex items-center gap-3 text-white/80 text-sm">
+                    <span class="relative flex h-3 w-3">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00FF66] opacity-75"></span>
+                      <span class="relative inline-flex rounded-full h-3 w-3 bg-[#00FF66]"></span>
+                    </span>
+                    <span>Transmitindo osts de videogame ao vivo</span>
                 </div>
+                <audio controls preload="none" class="w-full accent-[#00FF66]">
+                    <source src="https://rainwave.cc/tune/4" type="audio/mp3">
+                    Seu navegador não suporta o elemento de áudio.
+                </audio>
             </div>
         </div>
     </section>
