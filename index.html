@@ -149,7 +149,7 @@
         </div>
     </section>
 
-    <!-- RADIO GAME MUSIC SECTION -->
+    <!-- RADIO GAME MUSIC SECTION (BARRA DE SOM MINIMALISTA) -->
     <section class="relative py-12">
         <div class="mx-auto max-w-xl px-5 lg:px-8">
             <div class="mb-4 flex items-center justify-between">
@@ -158,19 +158,32 @@
                     <h3 class="text-lg font-bold text-white">Trilha sonora aleatória de clássicos 🎧</h3>
                 </div>
             </div>
-            <!-- Player de Áudio Estilizado -->
+            
             <div class="overflow-hidden rounded-2xl border border-white/10 bg-card p-6 shadow-xl flex flex-col items-center gap-4">
                 <div class="flex items-center gap-3 text-white/80 text-sm">
                     <span class="relative flex h-3 w-3">
                       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00FF66] opacity-75"></span>
                       <span class="relative inline-flex rounded-full h-3 w-3 bg-[#00FF66]"></span>
                     </span>
-                    <span>Transmitindo osts de videogame ao vivo</span>
+                    <span>OSTs de Videogame (Modo Rádio)</span>
                 </div>
-                <audio controls preload="none" class="w-full accent-[#00FF66]">
-                    <source src="https://rainwave.cc/tune/4" type="audio/mp3">
-                    Seu navegador não suporta o elemento de áudio.
-                </audio>
+                
+                <!-- Barra de Som Limpa com Player do YouTube Compacto -->
+                <div class="w-full flex items-center justify-between bg-black/40 border border-white/10 rounded-xl px-4 py-3">
+                    <div class="flex items-center gap-3">
+                        <span class="grid h-10 w-10 place-items-center rounded-lg bg-[#00FF66]/20 text-[#00FF66]">
+                            <i class="fa-solid fa-music animate-pulse"></i>
+                        </span>
+                        <div>
+                            <div class="text-xs font-bold text-white">Trilhas Sonoras de Games</div>
+                            <div class="text-[11px] text-white/50">Clique no play para ouvir</div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <iframe src="https://www.youtube.com/embed/FSiSwKeDsWY?autoplay=0&loop=1&playlist=FSiSwKeDsWY" width="120" height="30" style="border:none; overflow:hidden;" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"></iframe>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
