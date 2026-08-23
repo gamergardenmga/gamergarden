@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamer Garden - Peças Colecionáveis e Decoração Gamer</title>
+    <!-- Tailwind CSS v4 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- FontAwesome para Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        section { scroll-margin-top: 90px; }
+        .text-neon { color: #00FF66; }
+        .bg-neon { background-color: #00FF66; }
+        .border-neon { border-color: rgba(0, 255, 102, 0.3); }
+        .glow-green { box-shadow: 0 0 30px rgba(0, 255, 102, 0.25); }
+        .gradient-text {
+            background: linear-gradient(135deg, #00FF66 0%, #8A2BE2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bg-card { background-color: rgba(255, 255, 255, 0.02); }
+        .clip-corner {
+            clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+        }
+    </style>
+</head>
+<body class="bg-[#121214] text-white m-0 font-sans antialiased overflow-x-hidden">
+
+    <!-- NAVBAR -->
+    <header id="navbar" class="fixed top-0 z-50 w-full transition-all duration-300 bg-transparent">
+        <nav class="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 lg:px-8">
+            <a href="#inicio" class="nav-link flex items-center gap-2 group">
+                <span class="grid h-9 w-9 place-items-center rounded-lg bg-[#00FF66] text-[#121214] shadow-lg shadow-[#00FF66]/25 transition-transform group-hover:scale-110">
+                    <i class="fa-solid fa-seedling text-sm"></i>
+                </span>
+                <span class="text-lg font-bold tracking-wider">
+                    GAMER<span class="text-neon">GARDEN</span>
+                </span>
+            </a>
+
+            <ul class="hidden items-center gap-8 md:flex">
+                <li><a href="#inicio" class="nav-link relative text-sm font-medium text-white/70 transition-colors hover:text-white">Início</a></li>
+                <li><a href="#produtos" class="nav-link relative text-sm font-medium text-white/70 transition-colors hover:text-white">Produtos</a></li>
+                <li><a href="#processo" class="nav-link relative text-sm font-medium text-white/70 transition-colors hover:text-white">Processo</a></li>
+                <li><a href="#galeria" class="nav-link relative text-sm font-medium text-white/70 transition-colors hover:text-white">Galeria</a></li>
+                <li><a href="#contato" class="nav-link relative text-sm font-medium text-white/70 transition-colors hover:text-white">Contato</a></li>
+            </ul>
+
+            <a href="https://wa.me/5544988030627?text=Olá!%20Vim%20pelo%20site%20da%20Gamer%20Garden%20e%20gostaria%20de%20fazer%20um%20pedido%20de%20peça%20personalizada%20🎮" 
+               target="_blank" rel="noreferrer" 
+               class="hidden md:inline-flex items-center gap-2 rounded-lg bg-[#00FF66] px-5 py-2 text-sm font-semibold text-[#121214] transition-all hover:shadow-[0_0_22px_rgba(0,255,102,0.5)] hover:scale-105">
+                <i class="fa-brands fa-whatsapp"></i>
+                Pedir no WhatsApp
+            </a>
+
+            <button id="menuBtn" class="grid h-10 w-10 place-items-center rounded-lg border border-white/10 text-white md:hidden" aria-label="Menu">
+                <i id="menuIcon" class="fa-solid fa-bars text-lg"></i>
+            </button>
+        </nav>
+
+        <div id="mobileMenu" class="hidden border-t border-white/5 bg-[#121214]/95 px-5 py-4 md:hidden backdrop-blur-md">
+            <ul class="flex flex-col gap-3">
+                <li><a href="#inicio" class="nav-link mobile-link block rounded-lg px-3 py-2 text-white/80 hover:bg-white/5 hover:text-white">Início</a></li>
+                <li><a href="#produtos" class="nav-link mobile-link block rounded-lg px-3 py-2 text-white/80 hover:bg-white/5 hover:text-white">Produtos</a></li>
+                <li><a href="#processo" class="nav-link mobile-link block rounded-lg px-3 py-2 text-white/80 hover:bg-white/5 hover:text-white">Processo</a></li>
+                <li><a href="#galeria" class="nav-link mobile-link block rounded-lg px-3 py-2 text-white/80 hover:bg-white/5 hover:text-white">Galeria</a></li>
+                <li><a href="#contato" class="nav-link mobile-link block rounded-lg px-3 py-2 text-white/80 hover:bg-white/5 hover:text-white">Contato</a></li>
+                <li>
+                    <a href="https://wa.me/5544988030627?text=Olá!%20Vim%20pelo%20site%20da%20Gamer%20Garden%20e%20gostaria%20de%20fazer%20um%20pedido%20de%20peça%20personalizada%20🎮" 
+                       target="_blank" rel="noreferrer" 
+                       class="mt-1 flex items-center justify-center gap-2 rounded-lg bg-[#00FF66] px-3 py-2 text-center font-semibold text-[#121214]">
+                        <i class="fa-brands fa-whatsapp"></i> Pedir no WhatsApp
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="inicio" class="relative min-h-screen overflow-hidden flex items-center">
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="absolute -top-32 -left-24 h-96 w-96 rounded-full bg-[#8A2BE2]/20 blur-[120px]"></div>
+            <div class="absolute -bottom-32 -right-24 h-96 w-96 rounded-full bg-[#00FF66]/15 blur-[120px]"></div>
+            <canvas id="bgCanvas" class="absolute inset-0 h-full w-full"></canvas>
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#121214]/40 to-[#121214]"></div>
+        </div>
+
+        <div class="relative z-10 mx-auto grid min-h-screen max-w-7xl items-center gap-10 px-5 pt-28 pb-16 lg:grid-cols-2 lg:px-8 w-full">
+            <div>
+                <div class="inline-flex w-fit items-center gap-2 rounded-full border border-[#00FF66]/30 bg-[#00FF66]/10 px-4 py-1.5 text-xs font-medium text-[#00FF66]">
+                    <i class="fa-solid fa-location-dot h-3.5 w-3.5"></i>
+                    Feito à mão em Maringá - PR
+                </div>
+
+                <h1 class="mt-6 text-4xl font-black leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
+                    Dê vida ao seu setup com peças colecionáveis exclusivas <span class="text-neon">pintadas à mão</span>
+                </h1>
+
+                <p class="mt-6 max-w-xl text-base text-white/65 sm:text-lg">
+                    Vasos, suportes e decoração gamer impressos em filamento 3D e finalizados com pintura artesanal detalhada. Peças únicas para deixar o seu cantinho dos jogos ainda mais seu.
+                </p>
+
+                <div class="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
+                    <a href="https://wa.me/5544988030627?text=Olá!%20Vim%20pelo%20site%20da%20Gamer%20Garden%20e%20gostaria%20de%20fazer%20um%20pedido%20de%20peça%20personalizada%20🎮" 
+                       target="_blank" rel="noreferrer" 
+                       class="group inline-flex items-center justify-center gap-2 rounded-xl bg-[#00FF66] px-7 py-3.5 font-semibold text-[#121214] transition-all hover:shadow-[0_0_30px_rgba(0,255,102,0.55)] hover:scale-[1.03]">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        Pedir pelo WhatsApp
+                    </a>
+                    <a href="https://instagram.com/gamergarden.mga" target="_blank" rel="noreferrer" 
+                       class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 px-7 py-3.5 font-semibold text-white transition-all hover:border-[#00FF66]/40 hover:bg-white/10">
+                        <i class="fa-brands fa-instagram text-lg"></i>
+                        @gamergarden.mga
+                    </a>
+                </div>
+
+                <div class="mt-8 flex items-center gap-4 text-sm text-white/55">
+                    <div class="flex items-center gap-1">
+                        <i class="fa-solid fa-star text-[#00FF66]"></i>
+                        <i class="fa-solid fa-star text-[#00FF66]"></i>
+                        <i class="fa-solid fa-star text-[#00FF66]"></i>
+                        <i class="fa-solid fa-star text-[#00FF66]"></i>
+                        <i class="fa-solid fa-star text-[#00FF66]"></i>
+                    </div>
+                    <span>Peças exclusivas feitas sob encomenda para o seu setup</span>
+                </div>
+            </div>
+
+            <div class="relative">
+                <div class="relative overflow-hidden rounded-3xl border border-white/10 clip-corner glow-green">
+                    <img src="https://lh3.googleusercontent.com/d/1j8N039ZbIacJ9hxklWHpgcDFxhilLZsB" 
+                         alt="Setup gamer" 
+                         class="aspect-[4/3] w-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[#121214] via-transparent to-transparent"></div>
+                </div>
+                <div class="absolute -bottom-5 -left-5 hidden rounded-2xl border border-white/10 bg-[#121214]/95 px-5 py-4 backdrop-blur sm:block shadow-xl">
+                    <div class="flex items-center gap-3">
+                        <span class="grid h-10 w-10 place-items-center rounded-xl bg-[#00FF66]/15 text-[#00FF66]">
+                            <i class="fa-solid fa-gamepad text-lg"></i>
+                        </span>
+                        <div>
+                            <div class="text-sm font-bold text-white">Materializando a cultura gamer!</div>
+                            <div class="text-xs text-[#00FF66]">Exclusivo para o seu setup</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- YOUTUBE AUDIO PLAYER SECTION -->
+    <section class="relative py-12">
+        <div class="mx-auto max-w-xl px-5 lg:px-8">
+            <div class="mb-4 flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-semibold uppercase tracking-[0.2em] text-[#00FF66]">Trilha Sonora Gamer</span>
+                    <h3 class="text-lg font-bold text-white">Dê o play e explore o site com som 🎧</h3>
+                </div>
+            </div>
+            <div class="overflow-hidden rounded-2xl border border-white/10 bg-card shadow-xl">
+                <div class="relative w-full" style="padding-top: 56.25%;">
+                    <iframe class="absolute inset-0 h-full w-full" 
+                        src="https://www.youtube.com/embed/FSiSwKeDsWY?si=r3ETwksfEa2tVNQl&amp;start=10&amp;autoplay=0&amp;loop=1&amp;playlist=FSiSwKeDsWY" 
+                        title="Trilha Sonora Gamer" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        referrerpolicy="strict-origin-when-cross-origin" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCT SHOWCASE SECTION -->
+    <section id="produtos" class="relative py-24 lg:py-32">
+        <div class="mx-auto max-w-7xl px-5 lg:px-8">
+            <div class="max-w-2xl">
+                <span class="text-sm font-semibold uppercase tracking-[0.2em] text-[#00FF66]">Catálogo</span>
+                <h2 class="mt-3 text-3xl font-bold sm:text-5xl">Peças que <span class="gradient-text">ganham vida</span> no seu setup</h2>
+                <p class="mt-4 text-white/60">Cada item é impresso em 3D e pintado à mão com acabamento artesanal. Passe o mouse ou clique nas cores para ver cada versão!</p>
+            </div>
+
+            <div class="mt-8 flex flex-wrap gap-2" id="categoryButtons">
+                <button data-category="Todos" class="cat-btn rounded-full px-4 py-2 text-sm font-medium transition-all bg-[#00FF66] text-[#121214] shadow-[0_0_18px_rgba(0,255,102,0.4)]">Todos</button>
+                <button data-category="Vasos & Planters" class="cat-btn rounded-full px-4 py-2 text-sm font-medium transition-all border border-white/10 text-white/60 hover:border-[#00FF66]/50 hover:text-white">Vasos & Planters</button>
+                <button data-category="Porta-Trecos" class="cat-btn rounded-full px-4 py-2 text-sm font-medium transition-all border border-white/10 text-white/60 hover:border-[#00FF66]/50 hover:text-white">Porta-Trecos</button>
+                <button data-category="Quadros Decorativos" class="cat-btn rounded-full px-4 py-2 text-sm font-medium transition-all border border-white/10 text-white/60 hover:border-[#00FF66]/50 hover:text-white">Quadros Decorativos</button>
+            </div>
+
+            <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" id="productGrid"></div>
+
+            <div class="mt-12 flex flex-col items-center justify-between gap-5 rounded-2xl border border-[#00FF66]/20 bg-[#00FF66]/5 p-6 sm:flex-row">
+                <div class="flex items-center gap-4">
+                    <span class="grid h-12 w-12 place-items-center rounded-xl bg-[#00FF66]/15 text-[#00FF66]">
+                        <i class="fa-solid fa-sparkles text-xl"></i>
+                    </span>
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Não achou o que procura?</h3>
+                        <p class="text-sm text-white/60">Fazemos peças personalizadas sob encomenda — é só mandar sua ideia.</p>
+                    </div>
+                </div>
+                <a href="https://wa.me/5544988030627?text=Olá!%20Vim%20pelo%20site%20da%20Gamer%20Garden%20e%20gostaria%20de%20fazer%20um%20pedido%20de%20peça%20personalizada%20🎮" 
+                   target="_blank" rel="noreferrer" 
+                   class="inline-flex items-center gap-2 rounded-xl bg-[#00FF66] px-6 py-3 font-semibold text-[#121214] transition-all hover:shadow-[0_0_24px_rgba(0,255,102,0.5)]">
+                    <i class="fa-solid fa-paintbrush"></i>
+                    Pedir personalizada
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CRAFTING PROCESS SECTION -->
+    <section id="processo" class="relative overflow-hidden py-24 lg:py-32">
+        <div class="absolute -right-32 top-1/4 h-72 w-72 rounded-full bg-[#00FF66]/10 blur-[120px] pointer-events-none"></div>
+        <div class="mx-auto max-w-7xl px-5 lg:px-8">
+            <div class="max-w-2xl">
+                <span class="text-sm font-semibold uppercase tracking-[0.2em] text-[#00FF66]">O Processo Artesanal</span>
+                <h2 class="mt-3 text-3xl font-bold sm:text-5xl">Do modelo 3D à <span class="gradient-text">pincelada final</span></h2>
+                <p class="mt-4 text-white/60">Cada peça passa por um processo minucioso para garantir qualidade e exclusividade.</p>
+            </div>
+
+            <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+                
+                <div class="group relative overflow-hidden rounded-2xl border border-white/10 bg-card clip-corner">
+                    <div class="relative aspect-[4/3] overflow-hidden">
+                        <img src="https://lh3.googleusercontent.com/d/1170Z_52Tvs0hdFIZzV_fxZHSzNtDe3W7" alt="Modelagem 3D / IA" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#121214] via-[#121214]/40 to-transparent"></div>
+                        <span class="absolute left-4 top-4 text-3xl font-black text-white/30">00</span>
+                        <span class="absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-xl bg-[#8A2BE2] text-white shadow-lg shadow-[#8A2BE2]/30">
+                            <i class="fa-solid fa-wand-magic-sparkles text-lg"></i>
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white">Modelagem 3D & IA</h3>
+                        <p class="mt-2 text-sm text-white/60 leading-relaxed">Unimos a inteligência artificial com modelagem 3D avançada para criar designs únicos, detalhados e cheios de personalidade.</p>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl border border-white/10 bg-card clip-corner">
+                    <div class="relative aspect-[4/3] overflow-hidden">
+                        <img src="https://lh3.googleusercontent.com/d/1Pb8jIp1b7uTLTa5be3OwmGQexiFRzI5_" alt="Impressão 3D" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#121214] via-[#121214]/40 to-transparent"></div>
+                        <span class="absolute left-4 top-4 text-3xl font-black text-white/30">01</span>
+                        <span class="absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-xl bg-[#00FF66] text-[#121214] shadow-lg shadow-[#00FF66]/30">
+                            <i class="fa-solid fa-print text-lg"></i>
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white">Impressão 3D</h3>
+                        <p class="mt-2 text-sm text-white/60 leading-relaxed">Modelamos e imprimimos cada peça em filamento PLA biodegradável com precisão de detalhes.</p>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl border border-white/10 bg-card clip-corner">
+                    <div class="relative aspect-[4/3] overflow-hidden">
+                        <img src="https://lh3.googleusercontent.com/d/1n2ZRe7teywqNe1jDR0ic90AFbYZDNw_K" alt="Pintura Manual" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#121214] via-[#121214]/40 to-transparent"></div>
+                        <span class="absolute left-4 top-4 text-3xl font-black text-white/30">02</span>
+                        <span class="absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-xl bg-[#00FF66] text-[#121214] shadow-lg shadow-[#00FF66]/30">
+                            <i class="fa-solid fa-paintbrush text-lg"></i>
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white">Pintura Manual</h3>
+                        <p class="mt-2 text-sm text-white/60 leading-relaxed">Cada peça é pintada à mão com tintas de alta qualidade, camada por camada, para um acabamento único.</p>
+                    </div>
+                </div>
+
+                <div class="group relative overflow-hidden rounded-2xl border border-white/10 bg-card clip-corner">
+                    <div class="relative aspect-[4/3] overflow-hidden">
+                        <img src="https://lh3.googleusercontent.com/d/1jJd0jEWP_p_Q1nA25ZGpy1vw95vaRShG" alt="Envio" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#121214] via-[#121214]/40 to-transparent"></div>
+                        <span class="absolute left-4 top-4 text-3xl font-black text-white/30">03</span>
+                        <span class="absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-xl bg-[#00FF66] text-[#121214] shadow-lg shadow-[#00FF66]/30">
+                            <i class="fa-solid fa-box-check text-lg"></i>
+                        </span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white">Envio</h3>
+                        <p class="mt-2 text-sm text-white/60 leading-relaxed">Proteção cuidadosa e entrega em Maringá e região, saindo direto até a sua casa.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL PROOF / GALERIA SECTION -->
+    <section id="galeria" class="relative py-24 lg:py-32">
+        <div class="mx-auto max-w-7xl px-5 lg:px-8">
+            <div class="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
+                <div class="max-w-2xl">
+                    <span class="text-sm font-semibold uppercase tracking-[0.2em] text-[#00FF66]">Prova Social</span>
+                    <h2 class="mt-3 text-3xl font-bold sm:text-5xl">Peças vivas nos <span class="gradient-text">setups reais</span></h2>
+                    <p class="mt-4 text-white/60">Veja como nossos clientes integraram as peças da Gamer Garden nos seus cantinhos gamer.</p>
+                </div>
+                <a href="https://instagram.com/gamergarden.mga" target="_blank" rel="noreferrer" 
+                   class="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-white transition-all hover:border-[#00FF66]/40 hover:bg-white/10">
+                    <i class="fa-brands fa-instagram text-[#00FF66]"></i> Ver mais no Instagram
+                </a>
+            </div>
+
+            <div class="mt-10 grid gap-5 md:grid-cols-3">
+                <figure class="group relative overflow-hidden rounded-2xl border border-white/10 bg-card clip-corner">
+                    <div class="relative aspect-[4/3] overflow-hidden">
+                        <img src="https://lh3.googleusercontent.com/d/1R-76oiT0a9q6eaSxshV-y1HlK-cwJOlo" alt="Setup" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#121214] via-[#121214]/30 to-transparent"></div>
+                        <div class="absolute right-3 top-3 flex items-center gap-1 rounded-full bg-[#121214]/70 px-2.5 py-1 text-xs text-white/80 backdrop-blur">
+                            <i class="fa-solid fa-heart text-[#00FF66]"></i> Cliente
+                        </div>
+                    </div>
+                    <figcaption class="p-5">
+                        <div class="font-semibold text-[#00FF66]">@neonstreamer</div>
+                        <p class="mt-1 text-sm text-white/70">Meu setup nunca esteve tão completo! 🔥</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="group relative overflow-hidden rounded-2xl border border-white/10 bg-card clip-corner">
+                    <div class="relative aspect-[4/3] overflow-hidden">
+                        <img src="https://lh3.googleusercontent.com/d/1hhvIsdKM2Mje3DEVDxeY5DRoIlucqIg3" alt="Setup" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#121214] via-[#121214]/30 to-transparent"></div>
+                        <div class="absolute right-3 top-3 flex items-center gap-1 rounded-full bg-[#121214]/70 px-2.5 py-1 text-xs text-white/80 backdrop-blur">
+                            <i class="fa-solid fa-heart text-[#00FF66]"></i> Cliente
+                        </div>
+                    </div>
+                    <figcaption class="p-5">
+                        <div class="font-semibold text-[#00FF66]">@pixelgamer</div>
+                        <p class="mt-1 text-sm text-white/70">Qualidade da pintura é absurda, recomendo demais.</p>
+                    </figcaption>
+                </figure>
+
+                <figure class="group relative overflow-hidden rounded-2xl border border-white/10 bg-card clip-corner">
+                    <div class="relative aspect-[4/3] overflow-hidden">
+                        <img src="https://lh3.googleusercontent.com/d/1rCYgE8ffr80QDIblwisdcm2HrwH-UBch" alt="Setup" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#121214] via-[#121214]/30 to-transparent"></div>
+                        <div class="absolute right-3 top-3 flex items-center gap-1 rounded-full bg-[#121214]/70 px-2.5 py-1 text-xs text-white/80 backdrop-blur">
+                            <i class="fa-solid fa-heart text-[#00FF66]"></i> Cliente
+                        </div>
+                    </div>
+                    <figcaption class="p-5">
+                        <div class="font-semibold text-[#00FF66]">@retrosetup</div>
+                        <p class="mt-1 text-sm text-white/70">O vaso do Yoshi combinou perfeito com meu cantinho 🌱</p>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER / CONTACT SECTION -->
+    <footer id="contato" class="relative overflow-hidden border-t border-white/10 pt-24">
+        <div class="absolute -left-32 top-0 h-72 w-72 rounded-full bg-[#00FF66]/10 blur-[120px] pointer-events-none"></div>
+        <div class="mx-auto max-w-7xl px-5 lg:px-8">
+            <div class="grid gap-12 lg:grid-cols-2">
+                <div>
+                    <span class="text-sm font-semibold uppercase tracking-[0.2em] text-[#00FF66]">Contato</span>
+                    <h2 class="mt-3 text-3xl font-bold sm:text-5xl">Faça seu <span class="gradient-text">pedido agora</span></h2>
+                    <p class="mt-4 max-w-md text-white/60">Atendimento direto e rápido pela região de Maringá - PR. Escolha o canal que preferir:</p>
+
+                    <a href="https://wa.me/5544988030627?text=Olá!%20Vim%20pelo%20site%20da%20Gamer%20Garden%20e%20gostaria%20de%20fazer%20um%20pedido%20de%20peça%20personalizada%20🎮" 
+                       target="_blank" rel="noreferrer" 
+                       class="mt-8 flex items-center gap-4 rounded-2xl bg-[#00FF66] p-5 text-[#121214] transition-all hover:shadow-[0_0_34px_rgba(0,255,102,0.5)] hover:scale-[1.02]">
+                        <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-[#121214]/15">
+                            <i class="fa-brands fa-whatsapp text-2xl"></i>
+                        </span>
+                        <span>
+                            <span class="block text-lg font-bold">Pedir no WhatsApp</span>
+                            <span class="block text-sm opacity-80">Resposta rápida • Pedidos & dúvidas</span>
+                        </span>
+                    </a>
+
+                    <div class="mt-4 grid gap-3 sm:grid-cols-3">
+                        <a href="https://instagram.com/gamergarden.mga" target="_blank" rel="noreferrer" 
+                           class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 px-4 py-3 text-sm font-medium text-white/80 transition-all hover:border-[#00FF66]/50 hover:text-white">
+                            <i class="fa-brands fa-instagram text-[#00FF66]"></i> @gamergarden.mga
+                        </a>
+                        <a href="https://facebook.com/gamergarden" target="_blank" rel="noreferrer" 
+                           class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 px-4 py-3 text-sm font-medium text-white/80 transition-all hover:border-[#8A2BE2]/50 hover:text-white">
+                            <i class="fa-brands fa-facebook text-[#8A2BE2]"></i> /gamergarden
+                        </a>
+                        <a href="mailto:gamergarden.mga@gmail.com?subject=Contato%20pelo%20Site&body=Olá,%20gostaria%20de%20mais%20informações%20sobre%20as%20peças%20da%20Gamer%20Garden." 
+                           class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 px-4 py-3 text-sm font-medium text-white/80 transition-all hover:border-white/30 hover:text-white">
+                            <i class="fa-solid fa-envelope"></i> E-mail
+                        </a>
+                    </div>
+                </div>
+
+                <div class="rounded-2xl border border-white/10 bg-card p-6 sm:p-8">
+                    <h3 class="text-xl font-bold text-white">Gamer Garden</h3>
+                    <p class="mt-2 text-sm text-white/60">Peças colecionáveis impressas em 3D e pintadas à mão com amor para o seu setup.</p>
+
+                    <div class="mt-6 space-y-3 text-sm">
+                        <div class="flex items-center gap-3 text-white/70">
+                            <span class="grid h-9 w-9 place-items-center rounded-lg bg-[#00FF66]/15 text-[#00FF66]">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </span>
+                            Maringá - PR — atendimento e entrega local
+                        </div>
+                        <div class="flex items-center gap-3 text-white/70">
+                            <span class="grid h-9 w-9 place-items-center rounded-lg bg-[#00FF66]/15 text-[#00FF66]">
+                                <i class="fa-solid fa-envelope"></i>
+                            </span>
+                            <a href="mailto:gamergarden.mga@gmail.com?subject=Contato%20pelo%20Site&body=Olá,%20gostaria%20de%20mais%20informações%20sobre%20as%20peças%20da%20Gamer%20Garden." class="hover:text-white">gamergarden.mga@gmail.com</a>
+                        </div>
+                        <div class="flex items-center gap-3 text-white/70">
+                            <span class="grid h-9 w-9 place-items-center rounded-lg bg-[#00FF66]/15 text-[#00FF66]">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </span>
+                            <a href="https://wa.me/5544988030627?text=Olá!%20Vim%20pelo%20site%20da%20Gamer%20Garden%20e%20gostaria%20de%20fazer%20um%20pedido%20de%20peça%20personalizada%20🎮" target="_blank" rel="noreferrer" class="hover:text-white">
+                                WhatsApp para pedidos rápidos
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 rounded-xl bg-[#00FF66]/5 p-4 text-sm text-white/60">
+                        💬 Dica: mande uma foto de referência no WhatsApp que montamos a peça personalizada pra você.
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 py-8 sm:flex-row">
+                <div class="flex items-center gap-2">
+                    <span class="grid h-8 w-8 place-items-center rounded-lg bg-[#00FF66] text-[#121214]">
+                        <i class="fa-solid fa-seedling text-sm"></i>
+                    </span>
+                    <span class="text-sm font-bold tracking-wider">GAMER<span class="text-neon">GARDEN</span></span>
+                </div>
+                <p class="text-xs text-white/40" id="currentYearText"></p>
+            </div>
+        </div>
+
+        <a href="https://wa.me/5544988030627?text=Olá!%20Vim%20pelo%20site%20da%20Gamer%20Garden%20e%20gostaria%20de%20fazer%20um%20pedido%20de%20peça%20personalizada%20🎮" 
+           target="_blank" rel="noreferrer" 
+           class="fixed bottom-5 right-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-[#00FF66] text-[#121214] shadow-[0_0_24px_rgba(0,255,102,0.5)] transition-transform hover:scale-110"
+           aria-label="Pedir no WhatsApp">
+            <i class="fa-brands fa-whatsapp text-2xl"></i>
+        </a>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        document.getElementById('currentYearText').innerText = `© ${new Date().getFullYear()} Gamer Garden • Maringá - PR • Impresso 3D & pintado à mão 🎮`;
+
+        const COLORS_MAP = {
+            "Amarelo": "#FFD60A",
+            "Azul": "#2D7FF9",
+            "Verde": "#2ECC71",
+            "Preto": "#3a3a3a",
+            "Rosa": "#FF6FAE"
+        };
+
+        const PRODUCTS_DATA = [
+            { 
+                id: 1, 
+                title: "Vaso Chocobo", 
+                category: "Vasos & Planters", 
+                tags: ["Pintado à mão", "Exclusivo para Setup"],
+                variants: [
+                    { color: "Amarelo", img: "https://lh3.googleusercontent.com/d/1R-76oiT0a9q6eaSxshV-y1HlK-cwJOlo" },
+                    { color: "Azul", img: "https://lh3.googleusercontent.com/d/1rCYgE8ffr80QDIblwisdcm2HrwH-UBch" },
+                    { color: "Verde", img: "https://lh3.googleusercontent.com/d/1hhvIsdKM2Mje3DEVDxeY5DRoIlucqIg3" }
+                ]
+            },
+            { 
+                id: 2, 
+                title: "Vaso Lumas", 
+                category: "Vasos & Planters", 
+                tags: ["Pintado à mão", "Exclusivo para Setup"],
+                variants: [
+                    { color: "Verde", img: "https://lh3.googleusercontent.com/d/1u58JLFAj31QbJl3Qyv0UQkrbCjpeEiu7" },
+                    { color: "Azul", img: "https://lh3.googleusercontent.com/d/10yleTbo1q9fS-f0uTthoxNGR4UKyokSy" },
+                    { color: "Preto", img: "https://lh3.googleusercontent.com/d/1zrI4onPLWGaTN5XEHrvKGBwYG2l_Rjmx" },
+                    { color: "Rosa", img: "https://lh3.googleusercontent.com/d/1XOcupPboJGBzn7QxS97v5gqiF8k13Pl8" }
+                ]
+            },
+            { 
+                id: 3, 
+                title: "Vaso Yoshis", 
+                category: "Vasos & Planters", 
+                tags: ["Pintado à mão", "Exclusivo para Setup"],
+                variants: [
+                    { color: "Verde", img: "https://lh3.googleusercontent.com/d/1knWFYvfouiR08DTtwho6J6NdvWdubkY8" },
+                    { color: "Azul", img: "https://lh3.googleusercontent.com/d/1DsxrLdX74PcbFRJsjdqcjXCyvEgOGBKh" },
+                    { color: "Preto", img: "https://lh3.googleusercontent.com/d/1wfqsGYwDviMighMPp3xAucMZe1QIK9dM" }
+                ]
+            },
+            { 
+                id: 4, 
+                title: "Vaso Kirby", 
+                category: "Vasos & Planters", 
+                tags: ["Pintado à mão", "Exclusivo para Setup"],
+                variants: [
+                    { color: "Amarelo", img: "https://lh3.googleusercontent.com/d/1y9ls6_7p_pFMGZeXMXPE74hkd3ZSQu9S" },
+                    { color: "Azul", img: "https://lh3.googleusercontent.com/d/1iRxG-svijf_29Sl7mj9Lx5yvdxrIb0jm" },
+                    { color: "Rosa", img: "https://lh3.googleusercontent.com/d/10es8JysQMB0E90EQmjlQ5PWTXYHXsnUM" },
+                    { color: "Verde", img: "https://lh3.googleusercontent.com/d/1a6fkiXs-FsNq8hbJLYXVmMQCfnHkDxpM" }
+                ]
+            },
+            { 
+                id: 5, 
+                title: "Vaso Pretty Bomber", 
+                category: "Vasos & Planters", 
+                tags: ["Pintado à mão", "Exclusivo para Setup"],
+                variants: [
+                    { color: "Azul", img: "https://lh3.googleusercontent.com/d/1QntBFSYZbTtSrts0NpSp5OhzXE0uLe5e" }
+                ]
+            },
+            { 
+                id: 6, 
+                title: "Vaso Bomberman", 
+                category: "Vasos & Planters", 
+                tags: ["Pintado à mão", "Exclusivo para Setup"],
+                variants: [
+                    { color: "Azul", img: "https://lh3.googleusercontent.com/d/1JPtzRNvPLdmIuo-FtkG9ILw82lVYmvMi" }
+                ]
+            },
+            { 
+                id: 7, 
+                title: "Porta-Treco Toad", 
+                category: "Porta-Trecos", 
+                tags: ["Pintado à mão", "Exclusivo para Setup"],
+                variants: [
+                    { color: "Amarelo", img: "https://lh3.googleusercontent.com/d/1-gA0byQNHqcq63FxY8yvUC03JPjYPaH_" }
+                ]
+            },
+            { 
+                id: 8, 
+                title: "Porta-Treco Toadet", 
+                category: "Porta-Trecos", 
+                tags: ["Pintado à mão", "Exclusivo para Setup"],
+                variants: [
+                    { color: "Rosa", img: "https://lh3.googleusercontent.com/d/1Ls_SbpZHgzhDoFvfqJoGnmh5fpkeBmmV" }
+                ]
+            },
+            { 
+                id: 9, 
+                title: "Porta-Treco Tawna", 
+                category: "Porta-Trecos", 
+                tags: ["Pintado à mão", "Exclusivo para Setup"],
+                variants: [
+                    { color: "Verde", img: "https://lh3.googleusercontent.com/d/1nWP97rUCD1QDmODyPFI0UCnNHuXXfzsX" }
+                ]
+            },
+            { 
+                id: 10, 
+                title: "Porta-Treco Crash Bandicoot", 
+                category: "Porta-Trecos", 
+                tags: ["Pintado à mão", "Exclusivo para Setup"],
+                variants: [
+                    { color: "Amarelo", img: "https://lh3.googleusercontent.com/d/1Ycfz9AeYbgR6Ju5LuXRk2UFFxSkoDOzK" }
+                ]
+            },
+            { 
+                id: 11, 
+                title: "Quadro Cactuar", 
+                category: "Quadros Decorativos", 
+                tags: ["Pintado à mão", "Exclusivo para Setup"],
+                variants: [
+                    { color: "Verde", img: "https://lh3.googleusercontent.com/d/1j_M6Hwm7E_Z93RAbSuoVnIlzXenpy8ti" }
+                ]
+            },
+            { 
+                id: 12, 
+                title: "Quadro Chocobo", 
+                category: "Quadros Decorativos", 
+                tags: ["Pintado à mão", "Exclusivo para Setup"],
+                variants: [
+                    { color: "Amarelo", img: "https://lh3.googleusercontent.com/d/1NUf3QB0uZhCEJbbvC3hLtywgMtpSuBJg" }
+                ]
+            },
+            { 
+                id: 13, 
+                title: "Quadro Moogle", 
+                category: "Quadros Decorativos", 
+                tags: ["Pintado à mão", "Exclusivo para Setup"],
+                variants: [
+                    { color: "Rosa", img: "https://lh3.googleusercontent.com/d/1cW3FzwYGS0MsIHudegCwT0TKx7N2U0Y3" }
+                ]
+            },
+            { 
+                id: 14, 
+                title: "Quadro Carbuncle", 
+                category: "Quadros Decorativos", 
+                tags: ["Pintado à mão", "Exclusivo para Setup"],
+                variants: [
+                    { color: "Verde", img: "https://lh3.googleusercontent.com/d/14ZLlHXhKy8rC8lrC7ZP-FHJloahySBVb" }
+                ]
+            }
+        ];
+
+        const tagClasses = {
+            "Pintado à mão": "bg-[#00FF66]/15 text-[#00FF66] border-[#00FF66]/30",
+            "Exclusivo para Setup": "bg-white/5 text-white/70 border-white/10",
+            "Edição Limitada": "bg-[#8A2BE2]/20 text-[#8A2BE2] border-[#8A2BE2]/40"
+        };
+
+        function renderProducts(filterCategory) {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = "";
+
+            const filtered = filterCategory === "Todos" 
+                ? PRODUCTS_DATA 
+                : PRODUCTS_DATA.filter(p => p.category === filterCategory);
+
+            filtered.forEach(p => {
+                const defaultVariant = p.variants[0];
+                const getWhatsappLink = (colorName) => {
+                    const msg = `Olá! Vim pelo site da Gamer Garden e quero pedir: ${p.title} (cor: ${colorName}) 🎮`;
+                    return `https://wa.me/5544988030627?text=${encodeURIComponent(msg)}`;
+                };
+
+                let tagsHTML = p.tags.map(t => `<span class="rounded-full border px-2.5 py-1 text-[11px] font-medium backdrop-blur ${tagClasses[t] || ''}">${t}</span>`).join('');
+                
+                let colorDotsHTML = p.variants.map((v, idx) => `
+                    <span title="${v.color}" 
+                          data-product-id="${p.id}" 
+                          data-img="${v.img}" 
+                          data-color="${v.color}"
+                          class="color-dot cursor-pointer h-5 w-5 rounded-full border ${idx === 0 ? 'border-white ring-2 ring-[#00FF66]' : 'border-white/20'} inline-block transition-transform hover:scale-110" 
+                          style="background-color: ${COLORS_MAP[v.color] || '#fff'}">
+                    </span>
+                `).join('');
+
+                const article = document.createElement('article');
+                article.className = "group relative overflow-hidden rounded-2xl border border-white/10 bg-card clip-corner transition-all duration-300";
+                article.innerHTML = `
+                    <div class="relative aspect-[4/3] overflow-hidden">
+                        <img id="img-prod-${p.id}" src="${defaultVariant.img}" alt="${p.title}" class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#121214] via-[#121214]/20 to-transparent pointer-events-none"></div>
+                        <div class="absolute left-3 top-3 z-10 flex flex-wrap gap-1.5">${tagsHTML}</div>
+                    </div>
+                    <div class="p-5">
+                        <div class="text-xs font-medium uppercase tracking-wider text-[#00FF66]">${p.category}</div>
+                        <h3 class="mt-1 text-lg font-bold text-white">${p.title}</h3>
+                        ${p.variants.length > 1 ? `
+                        <div class="mt-3 flex items-center gap-2">
+                            <span class="text-xs text-white/45">Cores:</span>
+                            <div class="flex items-center gap-2" id="dots-container-${p.id}">${colorDotsHTML}</div>
+                        </div>` : ''}
+                        <a id="btn-prod-${p.id}" href="${getWhatsappLink(defaultVariant.color)}" target="_blank" rel="noreferrer" 
+                           class="mt-4 flex items-center justify-center gap-2 rounded-xl bg-[#00FF66] py-2.5 text-sm font-semibold text-[#121214] transition-all hover:shadow-[0_0_18px_rgba(0,255,102,0.5)]">
+                            <i class="fa-brands fa-whatsapp"></i> Pedir no WhatsApp
+                        </a>
+                    </div>
+                `;
+                grid.appendChild(article);
+            });
+
+            document.querySelectorAll('.color-dot').forEach(dot => {
+                dot.addEventListener('mouseenter', handleColorChange);
+                dot.addEventListener('click', handleColorChange);
+            });
+        }
+
+        function handleColorChange(e) {
+            const prodId = this.getAttribute('data-product-id');
+            const newImg = this.getAttribute('data-img');
+            const newColor = this.getAttribute('data-color');
+
+            const imgElement = document.getElementById(`img-prod-${prodId}`);
+            if(imgElement) imgElement.src = newImg;
+
+            const btnElement = document.getElementById(`btn-prod-${prodId}`);
+            if(btnElement) {
+                const prod = PRODUCTS_DATA.find(p => p.id == prodId);
+                const msg = `Olá! Vim pelo site da Gamer Garden e quero pedir: ${prod.title} (cor: ${newColor}) 🎮`;
+                btnElement.href = `https://wa.me/5544988030627?text=${encodeURIComponent(msg)}`;
+            }
+
+            const container = document.getElementById(`dots-container-${prodId}`);
+            container.querySelectorAll('.color-dot').forEach(d => {
+                d.classList.remove('border-white', 'ring-2', 'ring-[#00FF66]');
+                d.classList.add('border-white/20');
+            });
+            this.classList.remove('border-white/20');
+            this.classList.add('border-white', 'ring-2', 'ring-[#00FF66]');
+        }
+
+        const catButtons = document.querySelectorAll('.cat-btn');
+        catButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                catButtons.forEach(b => {
+                    b.classList.remove('bg-[#00FF66]', 'text-[#121214]', 'shadow-[0_0_18px_rgba(0,255,102,0.4)]');
+                    b.classList.add('border', 'border-white/10', 'text-white/60');
+                });
+                btn.classList.add('bg-[#00FF66]', 'text-[#121214]', 'shadow-[0_0_18px_rgba(0,255,102,0.4)]');
+                btn.classList.remove('border', 'border-white/10', 'text-white/60');
+                
+                renderProducts(btn.getAttribute('data-category'));
+            });
+        });
+
+        renderProducts("Todos");
+
+        // Correção de rolagem para o Google Sites
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId && targetId.startsWith('#')) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 30) {
+                navbar.classList.add('bg-[#121214]/85', 'backdrop-blur-md', 'border-b', 'border-white/5');
+            } else {
+                navbar.classList.remove('bg-[#121214]/85', 'backdrop-blur-md', 'border-b', 'border-white/5');
+            }
+        });
+
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIcon = document.getElementById('menuIcon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if (mobileMenu.classList.contains('hidden')) {
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            } else {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            }
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+
+        const canvas = document.getElementById("bgCanvas");
+        if (canvas) {
+            const ctx = canvas.getContext("2d");
+            let animationId;
+            let w, h, particles;
+            const colors = ["#00FF66", "#8A2BE2"];
+
+            const resize = () => {
+                w = canvas.width = canvas.offsetWidth;
+                h = canvas.height = canvas.offsetHeight;
+                const count = Math.min(70, Math.floor((w * h) / 22000));
+                particles = Array.from({ length: count }, () => ({
+                    x: Math.random() * w,
+                    y: Math.random() * h,
+                    r: Math.random() * 1.8 + 0.4,
+                    vx: (Math.random() - 0.5) * 0.35,
+                    vy: (Math.random() - 0.5) * 0.35,
+                    c: colors[Math.floor(Math.random() * colors.length)],
+                }));
+            };
+
+            const draw = () => {
+                ctx.clearRect(0, 0, w, h);
+                for (let i = 0; i < particles.length; i++) {
+                    const p = particles[i];
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    if (p.x < 0 || p.x > w) p.vx *= -1;
+                    if (p.y < 0 || p.y > h) p.vy *= -1;
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx.fillStyle = p.c;
+                    ctx.globalAlpha = 0.7;
+                    ctx.fill();
+                    for (let j = i + 1; j < particles.length; j++) {
+                        const q = particles[j];
+                        const dx = p.x - q.x;
+                        const dy = p.y - q.y;
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        if (dist < 120) {
+                            ctx.beginPath();
+                            ctx.moveTo(p.x, p.y);
+                            ctx.lineTo(q.x, q.y);
+                            ctx.strokeStyle = dist < 60 ? "rgba(0,255,102,0.18)" : "rgba(138,43,226,0.12)";
+                            ctx.lineWidth = 0.6;
+                            ctx.stroke();
+                        }
+                    }
+                }
+                animationId = requestAnimationFrame(draw);
+            };
+
+            resize();
+            draw();
+            window.addEventListener("resize", resize);
+        }
+    </script>
+</body>
+</html>
