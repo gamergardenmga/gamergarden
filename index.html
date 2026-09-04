@@ -8,6 +8,11 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Ocultar cursor padrão em todo o site */
+        body, a, button, input, select, textarea {
+            cursor: none !important;
+        }
+
         section { scroll-margin-top: 90px; }
         .text-neon { color: #00FF66; }
         .bg-neon { background-color: #00FF66; }
@@ -80,18 +85,53 @@
             100% { filter: hue-rotate(0deg); transform: scale(1); }
         }
 
-        /* Cursor com Luz Mágica */
+        /* Cursor Mágico com Oscilação Verde / Roxo */
         .magic-cursor {
             position: fixed;
-            width: 24px;
-            height: 24px;
-            background: radial-gradient(circle, rgba(0,255,102,0.9) 0%, rgba(0,204,255,0) 75%);
+            width: 22px;
+            height: 22px;
             border-radius: 50%;
             pointer-events: none;
             transform: translate(-50%, -50%);
             z-index: 99999;
-            box-shadow: 0 0 12px #00ff66, 0 0 24px #00ccff;
-            transition: width 0.15s, height 0.15s;
+            animation: cursorOscillation 4s infinite ease-in-out;
+        }
+
+        @keyframes cursorOscillation {
+            0% {
+                background: radial-gradient(circle, rgba(0,255,102,1) 0%, rgba(0,255,102,0) 75%);
+                box-shadow: 0 0 15px #00FF66, 0 0 30px #00FF66;
+            }
+            50% {
+                background: radial-gradient(circle, rgba(138,43,226,1) 0%, rgba(138,43,226,0) 75%);
+                box-shadow: 0 0 15px #8A2BE2, 0 0 30px #8A2BE2;
+            }
+            100% {
+                background: radial-gradient(circle, rgba(0,255,102,1) 0%, rgba(0,255,102,0) 75%);
+                box-shadow: 0 0 15px #00FF66, 0 0 30px #00FF66;
+            }
+        }
+
+        /* Partículas de Faísca do Rastro */
+        .sparkle-particle {
+            position: fixed;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 99998;
+            animation: fadeOutSparkle 0.6s forwards linear;
+        }
+
+        @keyframes fadeOutSparkle {
+            0% {
+                transform: scale(1.2) translate(0, 0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(0.2) translate(var(--tx), var(--ty));
+                opacity: 0;
+            }
         }
     </style>
 </head>
@@ -106,7 +146,7 @@
 
     <div id="intro-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-[#121214] px-4">
         <div class="relative overflow-hidden rounded-3xl border border-[#00FF66]/40 p-3 shadow-[0_0_50px_rgba(0,255,102,0.3)] animate-pulse max-w-md w-full bg-black/60 text-center">
-            <div class="relative aspect-[16/9] overflow-hidden rounded-2xl mb-4">
+            <div class="relative aspect-[16/9] overflow-hidden rounded-2xl mb-4 bg-transparent">
                 <img src="https://lh3.googleusercontent.com/d/1j8N039ZbIacJ9hxklWHpgcDFxhilLZsB" alt="Banner Gamer Garden" class="h-full w-full object-cover scale-105 transition-transform duration-1000">
                 <div class="absolute inset-0 bg-gradient-to-t from-[#121214] via-transparent to-transparent"></div>
             </div>
@@ -224,7 +264,7 @@
             </div>
 
             <div class="relative">
-                <div class="relative overflow-hidden rounded-3xl border border-white/10 clip-corner glow-green">
+                <div class="relative overflow-hidden rounded-3xl border border-white/10 clip-corner glow-green bg-transparent">
                     <img src="https://lh3.googleusercontent.com/d/1j8N039ZbIacJ9hxklWHpgcDFxhilLZsB" 
                          alt="Setup gamer" 
                          class="aspect-[4/3] w-full object-cover">
@@ -243,30 +283,11 @@
                 </div>
             </div>
         </div>
-    </section>
 
-    <section class="relative py-12">
-        <div class="mx-auto max-w-xl px-5 lg:px-8">
-            <div class="mb-4 flex items-center justify-between">
-                <div>
-                    <span class="text-xs font-semibold uppercase tracking-[0.2em] text-[#00FF66]">Rádio Gamer 24/7</span>
-                    <h3 class="text-lg font-bold text-white">Trilha sonora aleatória de clássicos 🎧</h3>
-                </div>
-            </div>
-            
-            <div class="overflow-hidden rounded-2xl border border-white/10 bg-card p-6 shadow-xl flex flex-col items-center gap-4 cyber-card">
-                <div class="flex items-center gap-3 text-white/80 text-sm">
-                    <span class="relative flex h-3 w-3">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00FF66] opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-3 w-3 bg-[#00FF66]"></span>
-                    </span>
-                    <span>OSTs de Videogame (Clique no Play para ouvir)</span>
-                </div>
-                
-                <div class="w-full overflow-hidden rounded-xl border border-white/10 bg-black/60 p-2 flex justify-center shadow-[0_0_20px_rgba(0,255,102,0.2)]">
-                    <iframe src="https://zeno.fm/player/gamemusic/" width="100%" height="150" frameborder="0" scrolling="no" class="rounded-lg"></iframe>
-                </div>
-            </div>
+        <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 z-20 flex flex-col items-center">
+            <a href="#produtos" class="nav-link flex h-12 w-12 items-center justify-center rounded-full border border-[#00FF66]/40 bg-[#121214]/60 text-[#00FF66] shadow-[0_0_20px_rgba(0,255,102,0.4)] transition-all hover:bg-[#00FF66] hover:text-[#121214] hover:scale-110">
+                <i class="fa-solid fa-chevron-down animate-bounce text-lg"></i>
+            </a>
         </div>
     </section>
 
@@ -319,7 +340,7 @@
             <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
                 
                 <div class="group relative overflow-hidden rounded-2xl border border-white/10 bg-card clip-corner cyber-card">
-                    <div class="relative aspect-[4/3] overflow-hidden bg-[#0b0b0b]">
+                    <div class="relative aspect-[4/3] overflow-hidden bg-transparent">
                         <img src="https://lh3.googleusercontent.com/d/1170Z_52Tvs0hdFIZzV_fxZHSzNtDe3W7" alt="Modelagem 3D / IA" class="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#121214] via-[#121214]/40 to-transparent"></div>
                         <span class="absolute left-4 top-4 text-3xl font-black text-white/30">00</span>
@@ -334,7 +355,7 @@
                 </div>
 
                 <div class="group relative overflow-hidden rounded-2xl border border-white/10 bg-card clip-corner cyber-card">
-                    <div class="relative aspect-[4/3] overflow-hidden bg-[#0b0b0b]">
+                    <div class="relative aspect-[4/3] overflow-hidden bg-transparent">
                         <img src="https://lh3.googleusercontent.com/d/1Pb8jIp1b7uTLTa5be3OwmGQexiFRzI5_" alt="Impressão 3D" class="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#121214] via-[#121214]/40 to-transparent"></div>
                         <span class="absolute left-4 top-4 text-3xl font-black text-white/30">01</span>
@@ -349,7 +370,7 @@
                 </div>
 
                 <div class="group relative overflow-hidden rounded-2xl border border-white/10 bg-card clip-corner cyber-card">
-                    <div class="relative aspect-[4/3] overflow-hidden bg-[#0b0b0b]">
+                    <div class="relative aspect-[4/3] overflow-hidden bg-transparent">
                         <img src="https://lh3.googleusercontent.com/d/1n2ZRe7teywqNe1jDR0ic90AFbYZDNw_K" alt="Pintura Manual" class="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#121214] via-[#121214]/40 to-transparent"></div>
                         <span class="absolute left-4 top-4 text-3xl font-black text-white/30">02</span>
@@ -364,7 +385,7 @@
                 </div>
 
                 <div class="group relative overflow-hidden rounded-2xl border border-white/10 bg-card clip-corner cyber-card">
-                    <div class="relative aspect-[4/3] overflow-hidden bg-[#0b0b0b]">
+                    <div class="relative aspect-[4/3] overflow-hidden bg-transparent">
                         <img src="https://lh3.googleusercontent.com/d/1jJd0jEWP_p_Q1nA25ZGpy1vw95vaRShG" alt="Envio" class="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#121214] via-[#121214]/40 to-transparent"></div>
                         <span class="absolute left-4 top-4 text-3xl font-black text-white/30">03</span>
@@ -398,7 +419,7 @@
 
             <div class="mt-10 grid gap-5 md:grid-cols-3">
                 <figure class="group relative overflow-hidden rounded-2xl border border-white/10 bg-card clip-corner cyber-card">
-                    <div class="relative aspect-[4/3] overflow-hidden bg-[#0b0b0b]">
+                    <div class="relative aspect-[4/3] overflow-hidden bg-transparent">
                         <img src="https://lh3.googleusercontent.com/d/1R-76oiT0a9q6eaSxshV-y1HlK-cwJOlo" alt="Setup" class="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#121214] via-[#121214]/30 to-transparent"></div>
                         <div class="absolute right-3 top-3 flex items-center gap-1 rounded-full bg-[#121214]/70 px-2.5 py-1 text-xs text-white/80 backdrop-blur">
@@ -412,7 +433,7 @@
                 </figure>
 
                 <figure class="group relative overflow-hidden rounded-2xl border border-white/10 bg-card clip-corner cyber-card">
-                    <div class="relative aspect-[4/3] overflow-hidden bg-[#0b0b0b]">
+                    <div class="relative aspect-[4/3] overflow-hidden bg-transparent">
                         <img src="https://lh3.googleusercontent.com/d/1hhvIsdKM2Mje3DEVDxeY5DRoIlucqIg3" alt="Setup" class="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#121214] via-[#121214]/30 to-transparent"></div>
                         <div class="absolute right-3 top-3 flex items-center gap-1 rounded-full bg-[#121214]/70 px-2.5 py-1 text-xs text-white/80 backdrop-blur">
@@ -426,7 +447,7 @@
                 </figure>
 
                 <figure class="group relative overflow-hidden rounded-2xl border border-white/10 bg-card clip-corner cyber-card">
-                    <div class="relative aspect-[4/3] overflow-hidden bg-[#0b0b0b]">
+                    <div class="relative aspect-[4/3] overflow-hidden bg-transparent">
                         <img src="https://lh3.googleusercontent.com/d/1rCYgE8ffr80QDIblwisdcm2HrwH-UBch" alt="Setup" class="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#121214] via-[#121214]/30 to-transparent"></div>
                         <div class="absolute right-3 top-3 flex items-center gap-1 rounded-full bg-[#121214]/70 px-2.5 py-1 text-xs text-white/80 backdrop-blur">
@@ -546,21 +567,48 @@
 
         document.getElementById('currentYearText').innerText = `© ${new Date().getFullYear()} Gamer Garden • Maringá - PR • Impresso 3D & pintado à mão 🎮`;
 
-        // Controle do Cursor Mágico
+        // Controle do Cursor Mágico e Faíscas no Rastro
         const cursor = document.getElementById('magicCursor');
+        let lastSparkleTime = 0;
+
         document.addEventListener('mousemove', (e) => {
             cursor.style.left = e.clientX + 'px';
             cursor.style.top = e.clientY + 'px';
+
+            const now = Date.now();
+            if (now - lastSparkleTime > 40) {
+                lastSparkleTime = now;
+                createSparkle(e.clientX, e.clientY);
+            }
         });
 
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle-particle';
+            sparkle.style.left = x + 'px';
+            sparkle.style.top = y + 'px';
+            
+            const isGreen = Math.random() > 0.5;
+            sparkle.style.backgroundColor = isGreen ? '#00FF66' : '#8A2BE2';
+            sparkle.style.boxShadow = isGreen ? '0 0 8px #00FF66' : '0 0 8px #8A2BE2';
+
+            const tx = (Math.random() - 0.5) * 40 + 'px';
+            const ty = (Math.random() - 0.5) * 40 + 'px';
+            sparkle.style.setProperty('--tx', tx);
+            sparkle.style.setProperty('--ty', ty);
+
+            document.body.appendChild(sparkle);
+            setTimeout(() => {
+                sparkle.remove();
+            }, 600);
+        }
+
         document.addEventListener('mousedown', () => {
-            cursor.style.width = '35px';
-            cursor.style.height = '35px';
+            cursor.style.transform = 'translate(-50%, -50%) scale(1.4)';
         });
 
         document.addEventListener('mouseup', () => {
-            cursor.style.width = '24px';
-            cursor.style.height = '24px';
+            cursor.style.transform = 'translate(-50%, -50%) scale(1)';
         });
 
         const COLORS_MAP = {
@@ -746,7 +794,7 @@
                 const article = document.createElement('article');
                 article.className = "group relative overflow-hidden rounded-2xl border border-white/10 bg-card clip-corner cyber-card transition-all duration-300";
                 article.innerHTML = `
-                    <div class="relative aspect-[4/3] overflow-hidden bg-[#0b0b0b]">
+                    <div class="relative aspect-[4/3] overflow-hidden bg-transparent">
                         <img id="img-prod-${p.id}" src="${defaultVariant.img}" alt="${p.title}" class="h-full w-full object-contain transition-transform duration-500 group-hover:scale-110">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#121214] via-[#121214]/20 to-transparent pointer-events-none"></div>
                         <div class="absolute left-3 top-3 z-10 flex flex-wrap gap-1.5">${tagsHTML}</div>
